@@ -25,8 +25,8 @@ find /var/log/ -type f -exec cp /dev/null {} \;
 # after cleanup
 after=$(df / -Pm | awk 'NR==2{print $4}')
 
-# used space
-used=$(df / -m | awk 'NR==2{print $3}')
+# used space; In incus containers, only calculates the root filesystem
+used=$(du -sx --block-size=1M / | awk '{print $1 " MB"}')
 
 # display size
 echo "Before: $before MB"

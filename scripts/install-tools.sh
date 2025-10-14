@@ -4,6 +4,8 @@ apt-get update
 apt-get install -y \
   ca-certificates \
   software-properties-common \
+  apt-utils \
+  python3-launchpadlib \
   curl \
   tzdata \
   openssh-client \
