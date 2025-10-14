@@ -3,6 +3,7 @@
 apt-get update
 apt-get install -y \
   ca-certificates \
+  software-properties-common \
   curl \
   tzdata \
   openssh-client \
