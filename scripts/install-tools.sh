@@ -9,6 +9,7 @@ apt-get install -y \
   curl \
   tzdata \
   openssh-client \
+  git \
   g++ \
   gcc \
   make \

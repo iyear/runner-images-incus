@@ -21,7 +21,6 @@ build {
   provisioner "shell" {
     scripts = [
       "scripts/install-tools.sh",
-      "scripts/install-git.sh",
       "scripts/install-runner.sh",
     ]
   }
