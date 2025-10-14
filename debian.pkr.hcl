@@ -9,7 +9,7 @@ packer {
 
 source "incus" "debian" {
   image        = "images:debian/12"
-  name         = "debian-12-packer"
+  output_image = "debian-runner"
   skip_publish = true
   reuse        = true
 }
