@@ -28,7 +28,7 @@ jobs:
           version: latest
       - name: Packer init
         run: |
-          packer init .
+          sudo packer init .
       - name: Packer build
         run: |
-          packer build -on-error=abort debian.pkr.hcl
+          sudo packer build -on-error=abort debian.pkr.hcl
