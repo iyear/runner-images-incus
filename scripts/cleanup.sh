@@ -25,7 +25,11 @@ find /var/log/ -type f -exec cp /dev/null {} \;
 # after cleanup
 after=$(df / -Pm | awk 'NR==2{print $4}')
 
+# used space
+used=$(df / -m | awk 'NR==2{print $3}')
+
 # display size
 echo "Before: $before MB"
 echo "After : $after MB"
 echo "Delta : $((after-before)) MB"
+echo "Used  : $used MB"

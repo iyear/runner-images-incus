@@ -32,7 +32,7 @@ build {
   }
 
   provisioner "shell" {
-    pause_before = "3m0s"
+    pause_before = "2m0s"
     scripts = [
       "scripts/cleanup.sh"
     ]
