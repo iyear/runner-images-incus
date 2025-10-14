@@ -5,7 +5,6 @@ apt-get install -y \
   ca-certificates \
   curl \
   tzdata \
-  upx \
   openssh-client \
   g++ \
   gcc \
@@ -24,7 +23,6 @@ apt-get install -y \
   ftp \
   lz4 \
   mediainfo \
-  netcat \
   net-tools \
   rsync \
   shellcheck \
