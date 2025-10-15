@@ -1,0 +1,27 @@
+[
+  {
+    "name": "node",
+    "url": "https://raw.githubusercontent.com/actions/node-versions/main/versions-manifest.json",
+    "platform": "linux",
+    "arch": "x64",
+    "versions": [
+      "18.*",
+      "20.*",
+      "22.*",
+      "24.*"
+    ]
+  },
+  {
+    "name": "go",
+    "url": "https://raw.githubusercontent.com/actions/go-versions/main/versions-manifest.json",
+    "arch": "x64",
+    "platform": "linux",
+    "versions": [
+      "1.21.*",
+      "1.22.*",
+      "1.23.*",
+      "1.24.*",
+      "1.25.*"
+    ]
+  }
+]

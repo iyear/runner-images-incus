@@ -1,10 +1,13 @@
 #!/bin/bash -e
 
+export DEBIAN_FRONTEND=noninteractive
+
 apt-get update
 apt-get install -y \
-  ca-certificates \
-  software-properties-common \
   apt-utils \
+  ca-certificates \
+  apt-transport-https \
+  software-properties-common \
   dpkg \
   python3-launchpadlib \
   curl \

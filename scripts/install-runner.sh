@@ -2,8 +2,8 @@
 
 VERSION="2.320.0"
 
-mkdir -p /home/runner/actions-runner
-cd /home/runner/actions-runner || exit
+mkdir -p "$RUNNER_HOME"
+cd "$RUNNER_HOME" || exit
 
 file="actions-runner-linux-x64-$VERSION.tar.gz"
 
