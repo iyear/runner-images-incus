@@ -21,20 +21,21 @@ build {
   provisioner "shell" {
     scripts = [
       "scripts/install-tools.sh",
-      "scripts/install-runner.sh",
+      "scripts/install-docker.sh",
+      # "scripts/install-runner.sh",
     ]
   }
 
-  provisioner "shell" {
-    expect_disconnect = true
-    inline = ["echo 'Reboot Container'", "sudo reboot"]
-  }
-
-  provisioner "shell" {
-    pause_before = "2m0s"
-    scripts = [
-      "scripts/cleanup.sh"
-    ]
-    start_retry_timeout = "10m"
-  }
+  # provisioner "shell" {
+  #   expect_disconnect = true
+  #   inline = ["echo 'Reboot Container'", "sudo reboot"]
+  # }
+  #
+  # provisioner "shell" {
+  #   pause_before = "2m0s"
+  #   scripts = [
+  #     "scripts/cleanup.sh"
+  #   ]
+  #   start_retry_timeout = "10m"
+  # }
 }

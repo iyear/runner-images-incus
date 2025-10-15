@@ -1,10 +1,11 @@
-#!/usr/bin/env bash
+#!/bin/bash -e
 
 apt-get update
 apt-get install -y \
   ca-certificates \
   software-properties-common \
   apt-utils \
+  dpkg \
   python3-launchpadlib \
   curl \
   tzdata \

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash -e
 
 # before cleanup
 before=$(df / -Pm | awk 'NR==2{print $4}')
