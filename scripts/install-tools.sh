@@ -37,4 +37,5 @@ apt-get install -y \
   ssh \
   sudo \
   time \
-  zip
+  zip \
+  zstd
