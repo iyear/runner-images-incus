@@ -30,42 +30,60 @@ build {
   sources = ["source.incus.debian"]
 
   provisioner "shell" {
-    environment_vars = [
-      "RUNNER_HOME=${local.runner_home}",
-    ]
-    scripts = [
-      "${local.scripts_path}/install-tools.sh",
-      "${local.scripts_path}/install-docker.sh",
-      "${local.scripts_path}/install-runner.sh",
-      "${local.scripts_path}/install-powershell.sh"
-    ]
-  }
-
-  provisioner "file" {
-    source      = "${local.toolset_path}/${local.toolset_file}"
-    destination = "${local.tmp_path}"
+    script          = "${local.scripts_path}/configure-environment.sh"
   }
 
   provisioner "shell" {
-    environment_vars = [
-      "TOOLSET_CONF=${local.tmp_path}/${local.toolset_file}",
-      "AGENT_TOOLSDIRECTORY=${local.toolcache_path}",
-    ]
-    scripts = [
-      "${local.toolset_path}/Install-Toolset.ps1"
-    ]
+    execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+    script          = "${local.scripts_path}/print-env.sh"
   }
 
   provisioner "shell" {
-    expect_disconnect = true
-    inline = ["echo 'Reboot Container'", "sudo reboot"]
+    script          = "${local.scripts_path}/print-env.sh"
   }
 
   provisioner "shell" {
-    pause_before = "1m0s"
-    scripts = [
-      "${local.scripts_path}/cleanup.sh"
-    ]
-    start_retry_timeout = "10m"
+    execute_command = "chmod +x {{ .Path }}; {{ .Vars }} bash -l {{ .Path }}"
+    script          = "${local.scripts_path}/print-env.sh"
   }
+
+  # provisioner "shell" {
+  #   environment_vars = [
+  #     "RUNNER_HOME=${local.runner_home}",
+  #   ]
+  #   scripts = [
+  #     "${local.scripts_path}/install-tools.sh",
+  #     "${local.scripts_path}/install-docker.sh",
+  #     "${local.scripts_path}/install-runner.sh",
+  #     "${local.scripts_path}/install-powershell.sh"
+  #   ]
+  # }
+  #
+  # provisioner "file" {
+  #   source      = "${local.toolset_path}/${local.toolset_file}"
+  #   destination = "${local.tmp_path}"
+  # }
+  #
+  # provisioner "shell" {
+  #   environment_vars = [
+  #     "TOOLSET_CONF=${local.tmp_path}/${local.toolset_file}",
+  #     "AGENT_TOOLSDIRECTORY=${local.toolcache_path}",
+  #   ]
+  #   scripts = [
+  #     "${local.toolset_path}/Install-Toolset.ps1"
+  #   ]
+  # }
+  #
+  # provisioner "shell" {
+  #   expect_disconnect = true
+  #   inline = ["echo 'Reboot Container'", "sudo reboot"]
+  # }
+  #
+  # provisioner "shell" {
+  #   pause_before = "1m0s"
+  #   scripts = [
+  #     "${local.scripts_path}/cleanup.sh"
+  #   ]
+  #   start_retry_timeout = "10m"
+  # }
 }
