@@ -35,7 +35,7 @@ build {
     ]
     scripts = [
       "${local.scripts_path}/install-tools.sh",
-      "${local.scripts_path}/install-docker.sh",
+      # "${local.scripts_path}/install-docker.sh",
       "${local.scripts_path}/install-runner.sh",
       "${local.scripts_path}/install-powershell.sh"
     ]
