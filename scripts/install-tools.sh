@@ -8,6 +8,7 @@ apt-get install -y \
   ca-certificates \
   apt-transport-https \
   software-properties-common \
+  tree \
   dpkg \
   python3-launchpadlib \
   curl \

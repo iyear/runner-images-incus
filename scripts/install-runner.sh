@@ -16,3 +16,6 @@ mkdir -p "$AGENT_TOOLSDIRECTORY"
 echo "AGENT_TOOLSDIRECTORY=$AGENT_TOOLSDIRECTORY" >> .env
 echo "RUNNER_TOOL_CACHE=$AGENT_TOOLSDIRECTORY" >> .env
 chmod -R 777 "$AGENT_TOOLSDIRECTORY"
+
+echo "Runner env:" && cat .env
+echo "Dir tree:" && tree -a -L 2

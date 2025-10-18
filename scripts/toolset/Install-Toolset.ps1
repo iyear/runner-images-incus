@@ -123,3 +123,6 @@ foreach ($tool in $tools) {
 
     chown -R "777" "$env:AGENT_TOOLSDIRECTORY/$( $tool.name )"
 }
+
+Write-Host "Toolset installation completed. Tree:"
+tree -a -L 2 "$env:AGENT_TOOLSDIRECTORY"
