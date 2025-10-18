@@ -13,12 +13,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5
-      - name: Setup Tailscale
-        uses: tailscale/github-action@v4
-        with:
-          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
-          oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
-          tags: tag:gh-runner
       - name: Install incus
         run: |
           curl https://pkgs.zabbly.com/get/incus-stable | sudo sh -x
@@ -28,16 +22,23 @@ jobs:
       - name: Init incus
         run: |
           sudo incus admin init --auto
-      - name: Add remte incus server
-        run: |
-          sudo incus remote add ${{ secrets.INCUS_NAME }} ${{ secrets.INCUS_SERVER }} --token=${{ secrets.INCUS_TOKEN }} --accept-certificate
       - name: Setup packer
         uses: hashicorp/setup-packer@main
         with:
           version: latest
-      - name: Packer init
-        run: |
-          sudo packer init .
       - name: Packer build
         run: |
+          sudo packer init .
           sudo packer build -on-error=abort debian.pkr.hcl
+      - name: Export incus image
+        run: |
+          sudo incus image list
+          sudo pwd
+          sudo incus image export debian-runner /tmp/runner # incus auto adds .tar.gz
+          sudo ls -lh /tmp/runner.tar.gz
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: runner-image.tar.gz
+          path: /tmp/runner.tar.gz
+          retention-days: 1
