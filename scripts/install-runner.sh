@@ -10,3 +10,9 @@ file="actions-runner-linux-x64-$VERSION.tar.gz"
 curl -O -L https://github.com/actions/runner/releases/download/v2.320.0/$file
 # Extract the installer
 tar xzf $file && rm -f $file
+
+# Prepare directory and env variable for toolcache
+mkdir -p "$AGENT_TOOLSDIRECTORY"
+echo "AGENT_TOOLSDIRECTORY=$AGENT_TOOLSDIRECTORY" >> .env
+echo "RUNNER_TOOL_CACHE=$AGENT_TOOLSDIRECTORY" >> .env
+chmod -R 777 "$AGENT_TOOLSDIRECTORY"
