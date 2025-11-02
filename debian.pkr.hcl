@@ -20,8 +20,13 @@ locals {
   toolset_path = "${local.scripts_path}/toolset"
   toolset_file = "toolset.json"
 
-  runner_home = "/home/runner/actions-runner"
+  runner_home    = "/home/runner/actions-runner"
   toolcache_path = "/opt/hostedtoolcache"
+  perm_paths = [
+    "/home/runner",
+    "/opt",
+    "/usr/share"
+  ]
 }
 
 build {
@@ -57,8 +62,17 @@ build {
   }
 
   provisioner "shell" {
+    environment_vars = [
+      "PERM_PATHS=${join(" ", local.perm_paths)}"
+    ]
+    scripts = [
+      "${local.scripts_path}/configure-perm.sh"
+    ]
+  }
+
+  provisioner "shell" {
     expect_disconnect = true
-    inline = ["echo 'Reboot Container'", "sudo reboot"]
+    inline = ["echo 'Reboot Container'", "reboot"]
   }
 
   provisioner "shell" {
