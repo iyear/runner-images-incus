@@ -17,6 +17,7 @@ echo "AGENT_TOOLSDIRECTORY=$AGENT_TOOLSDIRECTORY" >> .env
 echo "RUNNER_TOOL_CACHE=$AGENT_TOOLSDIRECTORY" >> .env
 
 chmod -R 777 "$AGENT_TOOLSDIRECTORY"
+chmod -R 777 "$RUNNER_HOME"
 
 echo "Runner env:" && cat .env
 echo "Dir tree:" && tree -a -L 2
